@@ -1,8 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-public enum PengerjaanState { Selesai, Stuck, Dikerjakan, BlmDikerjakan };
-public enum Trigger { Progres, Masalah };
+public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
+public enum Trigger { Pesan, cancel,mengajar,selesai };
 
 class StateTodo
 {
@@ -22,13 +22,13 @@ class StateTodo
 
     Transition[] transisi =
     {
-        new Transition(PengerjaanState.BlmDikerjakan, PengerjaanState.Dikerjakan, Trigger.Progres),
-        new Transition(PengerjaanState.Dikerjakan, PengerjaanState.Selesai, Trigger.Progres),
-        new Transition(PengerjaanState.Dikerjakan, PengerjaanState.Stuck, Trigger.Masalah),
-        new Transition(PengerjaanState.Stuck, PengerjaanState.Dikerjakan, Trigger.Progres)
+        new Transition(PengerjaanState.bersedia, PengerjaanState.SudahDipesan, Trigger.Pesan),
+        new Transition(PengerjaanState.SudahDipesan, PengerjaanState.bersedia, Trigger.cancel),
+        new Transition(PengerjaanState.SudahDipesan, PengerjaanState.Mengajar, Trigger.mengajar),
+        new Transition(PengerjaanState.Mengajar, PengerjaanState.bersedia, Trigger.selesai)
     };
 
-    public PengerjaanState currentState = PengerjaanState.BlmDikerjakan;
+    public PengerjaanState currentState = PengerjaanState.bersedia;
     public Dictionary<string, PengerjaanState> tasks = new Dictionary<string, PengerjaanState>(); // Dictionary to store tasks with their states
 
     public PengerjaanState GetNextState(PengerjaanState stateAwal, Trigger trigger)
@@ -52,12 +52,12 @@ class StateTodo
     public void AddTask(string task, PengerjaanState taskState)
     {
         tasks.Add(task, taskState);
-        Console.WriteLine("Pekerjaan baru ditambahkan: " + task + " (State: " + taskState + ")");
+        Console.WriteLine("tambah guru: " + task + " (State: " + taskState + ")");
     }
 
     public void DisplayTasks()
     {
-        Console.WriteLine("Daftar Pekerjaan:");
+        Console.WriteLine("Daftar guru:");
         foreach (var task in tasks)
         {
             Console.WriteLine("- " + task.Key + " (State: " + task.Value + ")");
@@ -69,11 +69,32 @@ class StateTodo
         if (tasks.ContainsKey(task))
         {
             tasks[task] = newState;
-            Console.WriteLine("State pekerjaan '" + task + "' berhasil diubah menjadi: " + newState);
+            Console.WriteLine("State guru '" + task + "' berhasil diubah menjadi: " + newState);
         }
         else
         {
             Console.WriteLine("Pekerjaan '" + task + "' tidak ditemukan.");
         }
+    }
+    public void Jalan()
+    {
+
+        Console.Write("Masukkan jumlah guru yang ingin ditambahkan: ");
+        int jumlahGuru = int.Parse(Console.ReadLine());
+
+        for (int i = 0; i < jumlahGuru; i++)
+        {
+            Console.Write("Masukkan nama guru ke-" + (i + 1) + ": ");
+            string namaGuru = Console.ReadLine();
+            AddTask(namaGuru, PengerjaanState.bersedia);
+        }
+
+        DisplayTasks();
+
+        Console.Write("Masukkan nama guru yang ingin diubah statusnya menjadi SudahDipesan: ");
+        string guruYangDiubah = Console.ReadLine();
+        ChangeTaskState(guruYangDiubah, PengerjaanState.SudahDipesan);
+
+        DisplayTasks();
     }
 }
