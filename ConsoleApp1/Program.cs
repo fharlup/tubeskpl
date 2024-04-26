@@ -1,14 +1,12 @@
-﻿
-class Program
+﻿class Program
 {
     static void Main()
     {
-        StateTodo todo = new StateTodo();
-        todo.AddTask("Mengerjakan tugas 1", PengerjaanState.BlmDikerjakan);
-        todo.AddTask("Mengerjakan tugas 2", PengerjaanState.BlmDikerjakan);
-        todo.DisplayTasks();
+        StateGuru Guru = new StateGuru();
 
-        todo.ChangeTaskState("Mengerjakan tugas 1", PengerjaanState.Dikerjakan);
-        todo.DisplayTasks();
+        Guru.TambahGuru();
+
+        Guru.TambahGuru();
+        Guru.PesanGuru();
     }
 }
