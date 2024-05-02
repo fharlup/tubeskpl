@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
 public enum Trigger { Pesan, cancel,mengajar,selesai };
@@ -77,21 +78,26 @@ class StateGuru
     }
     public void TambahGuru()
     {
-
         Console.Write("Masukkan jumlah guru yang ingin ditambahkan: ");
         int jumlahGuru = int.Parse(Console.ReadLine());
+
+        // Assertion: Pastikan jumlah guru yang dimasukkan tidak negatif
+        Debug.Assert(jumlahGuru >= 0, "Jumlah guru tidak boleh negatif");
 
         for (int i = 0; i < jumlahGuru; i++)
         {
             Console.Write("Masukkan nama guru ke-" + (i + 1) + ": ");
             string namaGuru = Console.ReadLine();
+        
+            // Assertion: Pastikan nama guru tidak kosong
+            Debug.Assert(!string.IsNullOrWhiteSpace(namaGuru), "Nama guru tidak boleh kosong");
+
             AddTask(namaGuru, PengerjaanState.bersedia);
         }
 
         DisplayTasks();
-
-   
     }
+
     public void PesanGuru()
     {
         Console.Write("Masukkan nama guru yang ingin dippesann: ");
