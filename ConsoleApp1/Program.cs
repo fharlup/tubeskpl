@@ -1,17 +1,22 @@
 ﻿using System.Runtime.InteropServices;
+using Utama.Enum;
+using Utama.State;
 
-class Program
+namespace Utama
 {
-    static void Main()
+    class Program
     {
-        Console.WriteLine("test");
-        StateGuru Guru = new StateGuru();
-        PengerjaanState status = new PengerjaanState();
+        static void Main()
+        {
+            Console.WriteLine("test");
+            StateGuru Guru = new StateGuru();
+            PengerjaanState status = new PengerjaanState();
 
-        Guru.TambahGuru();
-        Console.Write("test");
+            Guru.TambahGuru();
+            Console.Write("test");
 
-        Guru.TambahGuru();
-        Guru.PesanGuru();
+            Guru.TambahGuru();
+            Guru.PesanGuru();
+        }
     }
 }

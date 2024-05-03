@@ -5,84 +5,88 @@ using System.Diagnostics;
 // FILE UNTUK STATE MURID
 
 // State Murid
-class StateMurid
+
+namespace Utama.Enum
 {
-    public class Transition
+    class StateMurid
     {
-        public StatusPemesanan StateAwal;
-        public StatusPemesanan StateAkhir;
-        public Trigger Trigger;
-
-        public Transition(StatusPemesanan stateAwal, StatusPemesanan stateAkhir, Trigger trigger)
+        public class Transition
         {
-            this.StateAwal = stateAwal;
-            this.StateAkhir = stateAkhir;
-            this.Trigger = trigger;
-        }
-    }
+            public StatusPemesanan StateAwal;
+            public StatusPemesanan StateAkhir;
+            public Trigger Trigger;
 
-    Transition[] transisi =
-    {
+            public Transition(StatusPemesanan stateAwal, StatusPemesanan stateAkhir, Trigger trigger)
+            {
+                this.StateAwal = stateAwal;
+                this.StateAkhir = stateAkhir;
+                this.Trigger = trigger;
+            }
+        }
+
+        Transition[] transisi =
+        {
         new Transition(StatusPemesanan.Pending, StatusPemesanan.Ongoing, Trigger.Pesan),
         new Transition(StatusPemesanan.Ongoing, StatusPemesanan.Pending, Trigger.cancel),
         new Transition(StatusPemesanan.Ongoing, StatusPemesanan.Done, Trigger.mengajar),
         new Transition(StatusPemesanan.Done, StatusPemesanan.Pending, Trigger.selesai)
     };
 
-    public StatusPemesanan currentState = StatusPemesanan.Pending;
+        public StatusPemesanan currentState = StatusPemesanan.Pending;
 
-    // Dictionary to store tasks with their states
-    public Dictionary<string, StatusPemesanan> tasks = new Dictionary<string, StatusPemesanan>();
+        // Dictionary to store tasks with their states
+        public Dictionary<string, StatusPemesanan> tasks = new Dictionary<string, StatusPemesanan>();
 
-    public StatusPemesanan GetNextState(StatusPemesanan stateAwal, Trigger trigger)
-    {
-        foreach (Transition perubahan in transisi)
+        public StatusPemesanan GetNextState(StatusPemesanan stateAwal, Trigger trigger)
         {
-            if (stateAwal == perubahan.StateAwal && trigger == perubahan.Trigger)
+            foreach (Transition perubahan in transisi)
             {
-                return perubahan.StateAkhir;
+                if (stateAwal == perubahan.StateAwal && trigger == perubahan.Trigger)
+                {
+                    return perubahan.StateAkhir;
+                }
+            }
+
+            // Return current state if no transition found
+            return stateAwal;
+        }
+
+        public void DisplayMataPelajaran()
+        {
+            Console.WriteLine("Daftar MataPelajaran:");
+            foreach (var task in tasks)
+            {
+                Console.WriteLine("- " + task.Key + " (State: " + task.Value + ")");
             }
         }
 
-        // Return current state if no transition found
-        return stateAwal; 
-    }
-
-    public void DisplayMataPelajaran()
-    {
-        Console.WriteLine("Daftar MataPelajaran:");
-        foreach (var task in tasks)
+        // State Awal
+        public void ActivateTrigger(Trigger trigger)
         {
-            Console.WriteLine("- " + task.Key + " (State: " + task.Value + ")");
+            currentState = GetNextState(currentState, trigger);
+            Console.WriteLine("State Anda adalah: " + currentState);
         }
-    }
 
-    // State Awal
-    public void ActivateTrigger(Trigger trigger)
-    {
-        currentState = GetNextState(currentState, trigger);
-        Console.WriteLine("State Anda adalah: " + currentState);
-    }
-
-    public void ChangeTaskState(string task, StatusPemesanan newState)
-    {
-        if (tasks.ContainsKey(task))
+        public void ChangeTaskState(string task, StatusPemesanan newState)
         {
-            tasks[task] = newState;
-            Console.WriteLine("State Guru '" + task + "' berhasil diubah menjadi: " + newState);
+            if (tasks.ContainsKey(task))
+            {
+                tasks[task] = newState;
+                Console.WriteLine("State Guru '" + task + "' berhasil diubah menjadi: " + newState);
+            }
+            else
+            {
+                Console.WriteLine("Pekerjaan '" + task + "' tidak ditemukan.");
+            }
         }
-        else
+
+        public void PesanGuru()
         {
-            Console.WriteLine("Pekerjaan '" + task + "' tidak ditemukan.");
+            Console.Write("Masukkan nama Mata Pelajaran yang ingin dienroll: ");
+            string MataPelajaran = Console.ReadLine();
+            ChangeTaskState(MataPelajaran, StatusPemesanan.Ongoing);
+
+            DisplayMataPelajaran();
         }
-    }
-
-    public void PesanGuru()
-    {
-        Console.Write("Masukkan nama Mata Pelajaran yang ingin dienroll: ");
-        string MataPelajaran = Console.ReadLine();
-        ChangeTaskState(MataPelajaran, StatusPemesanan.Ongoing);
-
-        DisplayMataPelajaran();
     }
 }
