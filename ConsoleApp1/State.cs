@@ -101,7 +101,7 @@ class StateGuru
 
     public void PesanGuru()
     {
-        Console.Write("Masukkan nama guru yang ingin dippesann: ");
+        Console.Write("Masukkan nama guru yang ingin dipesan: ");
         string guruYangDiubah = Console.ReadLine();
         ChangeTaskState(guruYangDiubah, PengerjaanState.SudahDipesan);
         Bayar();
