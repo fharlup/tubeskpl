@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
-public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
-public enum Trigger { Pesan, cancel,mengajar,selesai };
+// FILE UNTUK STATE GURU
+
+// State Guru
 class StateGuru
 {
     public class Transition
@@ -10,7 +12,7 @@ class StateGuru
         public PengerjaanState StateAwal;
         public PengerjaanState StateAkhir;
         public Trigger Trigger;
-
+        
         public Transition(PengerjaanState stateAwal, PengerjaanState stateAkhir, Trigger trigger)
         {
             this.StateAwal = stateAwal;
@@ -77,24 +79,29 @@ class StateGuru
     }
     public void TambahGuru()
     {
-
         Console.Write("Masukkan jumlah guru yang ingin ditambahkan: ");
         int jumlahGuru = int.Parse(Console.ReadLine());
+
+        // Assertion: Pastikan jumlah guru yang dimasukkan tidak negatif
+        Debug.Assert(jumlahGuru >= 0, "Jumlah guru tidak boleh negatif");
 
         for (int i = 0; i < jumlahGuru; i++)
         {
             Console.Write("Masukkan nama guru ke-" + (i + 1) + ": ");
             string namaGuru = Console.ReadLine();
+        
+            // Assertion: Pastikan nama guru tidak kosong
+            Debug.Assert(!string.IsNullOrWhiteSpace(namaGuru), "Nama guru tidak boleh kosong");
+
             AddTask(namaGuru, PengerjaanState.bersedia);
         }
 
         DisplayTasks();
-
-   
     }
+
     public void PesanGuru()
     {
-        Console.Write("Masukkan nama guru yang ingin dippesann: ");
+        Console.Write("Masukkan nama guru yang ingin dipesan: ");
         string guruYangDiubah = Console.ReadLine();
         ChangeTaskState(guruYangDiubah, PengerjaanState.SudahDipesan);
         Bayar();
