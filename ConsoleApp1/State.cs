@@ -4,7 +4,11 @@ using System.Diagnostics;
 
 public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
 public enum Trigger { Pesan, cancel,mengajar,selesai };
-public class StateGuru
+
+public class StateGuru;
+
+
+
 {
     public class Transition
     {
