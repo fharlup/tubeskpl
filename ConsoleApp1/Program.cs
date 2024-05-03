@@ -6,6 +6,7 @@ class Program
     {
         Console.WriteLine("test");
         StateGuru Guru = new StateGuru();
+        PengerjaanState status = new PengerjaanState();
 
         Guru.TambahGuru();
         Console.Write("test");
