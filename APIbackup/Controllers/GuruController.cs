@@ -1,16 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Utama.Class;
+﻿using API.Class;
+using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GuruController : ControllerBase
     {
-        private static List<Guru> listGuru = new List<Guru>
-        {
-            new Guru("a",2,"a",Utama.Enum.PengerjaanState.Mengajar)
-        };
+        private static List<Guru> listGuru = new List<Guru>();
 
         [HttpGet]
         public IActionResult Get()
