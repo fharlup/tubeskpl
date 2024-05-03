@@ -11,6 +11,7 @@ class Program
         Console.Write("test");
 
         Guru.TambahGuru(2);
+        Guru.Bayar();
         Guru.PesanGuru();
     }
 }

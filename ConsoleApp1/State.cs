@@ -5,7 +5,7 @@ using System.Diagnostics;
 public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
 public enum Trigger { Pesan, cancel,mengajar,selesai };
 
-public class StateGuru;
+public class StateGuru
 
 
 
@@ -107,7 +107,7 @@ public class StateGuru;
         Console.Write("Masukkan nama guru yang ingin dippesann: ");
         string guruYangDiubah = Console.ReadLine();
         ChangeTaskState(guruYangDiubah, PengerjaanState.SudahDipesan);
-        Bayar();
+       // Bayar();
 
         DisplayTasks();
     }
@@ -115,10 +115,30 @@ public class StateGuru;
     public void Bayar()
     {
         BankTransferConfig config = new BankTransferConfig();
-        Console.WriteLine("en/id:");
+        Console.WriteLine(" 1 for en/ 2 untuk id:");
 
-        Console.WriteLine("bayar");
-        string Bahasa = Console.ReadLine();
+
+
+
+        Console.WriteLine("1 for English / 2 untuk Bahasa Indonesia:");
+        Console.WriteLine("Enter your choice:");
+
+
+        //string Bahasa = Console.ReadLine();
+        String Bahasa = "1";
+        // Check the user's choice
+        if (Bahasa == "1")
+        {
+            Console.WriteLine("Pay");
+        }
+        else if (Bahasa == "2")
+        {
+            Console.WriteLine("Bayar");
+        }
+        else
+        {
+            Console.WriteLine("Invalid choice");
+        }
 
         string langPrompt = Bahasa == "en" ? "Please insert the amount of money to transfer:" : "Masukkan jumlah uang yang akan di-transfer:";
         Console.WriteLine(langPrompt);
