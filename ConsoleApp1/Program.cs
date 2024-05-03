@@ -6,7 +6,6 @@ namespace Utama
 {
     class Program
     {
-
         static void Main()
         {
             Console.WriteLine("test");

@@ -5,36 +5,29 @@ namespace Utama.Class
 {
     public class Guru
     {
-        public string namaGuru { get; set; }
-        public int umur { get; set; }
-        public string mpKeahlian { get; set; }
-        public PengerjaanState status { get; set; }
-
-        public Guru(string namaGuru, int umur, string mpKeahlian, PengerjaanState status) {
-            this.namaGuru = namaGuru;
-            this.umur = umur;
-            this.mpKeahlian = mpKeahlian;
-            this.status = status;
-        }
+        private string namaGuru;
+        private int umur;
+        private string mpKeahlian;
+        private PengerjaanState status;
     }
 
     public class Murid
     {
-        public string namaMurid { get; set; }
-        public int umur { get; set; }
-        public string pendidikan { get; set; }
-        //public PengerjaanState status; 
+        private string namaMurid;
+        private int umur;
+        private string pendidikan;
+        //private PengerjaanState status; 
     }
 
     public class JadwalPesanan
     {
-        public string mataPelajaran { get; set; }
+        private string mataPelajaran;
 
         // diganti jadi date-time
-        // public string tanggalPesanan;
+        // private string tanggalPesanan;
 
-        public Guru guru { get; set; }
-        public Murid murid { get; set; }
-        public StatusPemesanan statusPesanan { get; set; }
+        private Guru guru;
+        private Murid murid;
+        private StatusPemesanan statusPesanan;
     }
 }
