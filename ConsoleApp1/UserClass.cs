@@ -5,18 +5,18 @@ namespace Utama.Class
 {
     public class Guru
     {
-        private string namaGuru;
-        private int umur;
-        private string mpKeahlian;
-        private PengerjaanState status;
+        public string namaGuru { get; set; }
+        public int umur { get; set; }
+        public string mpKeahlian { get; set; }
+        public PengerjaanState status { get; set; }
     }
 
     public class Murid
     {
-        private string namaMurid;
-        private int umur;
-        private string pendidikan;
-        //private PengerjaanState status; 
+        public string namaMurid { get; set; }
+        public int umur { get; set; }
+        public string pendidikan { get; set; }
+        //public PengerjaanState status { get; set; }
     }
 
     public class JadwalPesanan
