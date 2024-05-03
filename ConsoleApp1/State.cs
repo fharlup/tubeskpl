@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
 public enum Trigger { Pesan, cancel,mengajar,selesai };
-class StateGuru
+public class StateGuru
 {
     public class Transition
     {
@@ -76,7 +76,7 @@ class StateGuru
             Console.WriteLine("Pekerjaan '" + task + "' tidak ditemukan.");
         }
     }
-    public void TambahGuru()
+    public void TambahGuru(int jumlahGuru1)
     {
         Console.Write("Masukkan jumlah guru yang ingin ditambahkan: ");
         int jumlahGuru = int.Parse(Console.ReadLine());

@@ -7,10 +7,10 @@ class Program
         Console.WriteLine("test");
         StateGuru Guru = new StateGuru();
 
-        Guru.TambahGuru();
+        Guru.TambahGuru(2);
         Console.Write("test");
 
-        Guru.TambahGuru();
+        Guru.TambahGuru(2);
         Guru.PesanGuru();
     }
 }
