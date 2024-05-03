@@ -11,7 +11,7 @@ class StateGuru
         public PengerjaanState StateAwal;
         public PengerjaanState StateAkhir;
         public Trigger Trigger;
-
+        //apa
         public Transition(PengerjaanState stateAwal, PengerjaanState stateAkhir, Trigger trigger)
         {
             this.StateAwal = stateAwal;
