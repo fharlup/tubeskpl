@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 
-public enum PengerjaanState { bersedia,SudahDipesan,Mengajar };
-public enum Trigger { Pesan, cancel,mengajar,selesai };
+// FILE UNTUK STATE GURU
+
+// State Guru
 class StateGuru
 {
     public class Transition
@@ -11,7 +12,7 @@ class StateGuru
         public PengerjaanState StateAwal;
         public PengerjaanState StateAkhir;
         public Trigger Trigger;
-        //apa
+        
         public Transition(PengerjaanState stateAwal, PengerjaanState stateAkhir, Trigger trigger)
         {
             this.StateAwal = stateAwal;
