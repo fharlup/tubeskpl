@@ -4,7 +4,7 @@ using Utama.Enum;
 
 namespace API.Controllers
 {
-    [Route("guru/[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class GuruController : ControllerBase
     {

@@ -12,7 +12,11 @@ namespace Utama.Class
         public string mpKeahlian { get; set; }
         public PengerjaanState status { get; set; }
 
-        // bikin konstruktor buat akun guru
+        public Guru(string username, string password, string nama, int umur, string mpKeahlian) : base(username,password,nama,umur)
+        {
+            this.mpKeahlian = mpKeahlian;
+            status = 0;
+        }
 
         public Jadwal BuatJadwal()
         {
