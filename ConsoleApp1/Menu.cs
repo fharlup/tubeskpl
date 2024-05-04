@@ -25,8 +25,8 @@ namespace Utama
         public String RolePage()
         {
             Console.WriteLine("Pilih Guru atau Murid");
-            Console.WriteLine("1.Murid");
-            Console.WriteLine("2.Guru");
+            Console.WriteLine("1.Guru");
+            Console.WriteLine("2.Murid");
             Console.WriteLine("0. Exit");
             Console.Write("Pilih: ");
             return Console.ReadLine();
@@ -36,7 +36,8 @@ namespace Utama
         {
             Console.WriteLine("1. Sewa Guru"); // search jadwal kosong yang dibuat guru dari mata pelajaran
             Console.WriteLine("2. Lihat Jadwal"); // lihat jadwal
-            Console.WriteLine("0. Logout");
+            Console.WriteLine("3. Logout");
+            Console.WriteLine("0. Exit");
             Console.Write("Pilih: ");
             return Console.ReadLine();
         }
@@ -45,7 +46,8 @@ namespace Utama
         {
             Console.WriteLine("1. Buat Jadwal");
             Console.WriteLine("2. Lihat Jadwal");
-            Console.WriteLine("0. Logout");
+            Console.WriteLine("3. Logout");
+            Console.WriteLine("0. Exit");
             Console.Write("Pilih: ");
             return Console.ReadLine();
         }

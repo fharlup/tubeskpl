@@ -14,6 +14,8 @@ namespace Utama.Class
         public string pendidikan { get; set; }
         //public PengerjaanState status { get; set; }
 
+        //bikin constructor buat register
+
         public void CariGuru()
         {
             // cari guru berdasarkan mata pelajaran
