@@ -1,22 +1,30 @@
-﻿using System.Runtime.InteropServices;
-using Utama.Enum;
-using Utama.State;
+﻿using System.Net.Http.Json;
 
 namespace Utama
 {
     class Program
     {
-        static void Main()
+        private static bool isLoggedIn = false;
+        static async Task Main()
         {
-            Console.WriteLine("test");
-            StateGuru Guru = new StateGuru();
-            PengerjaanState status = new PengerjaanState();
+            HttpClient httpClient = new HttpClient();
+            httpClient.BaseAddress = new Uri("https://localhost:7231/"); // portnya sesuain
 
-            Guru.TambahGuru();
-            Console.Write("test");
+            bool exit = false;
+            string option;
+            Menu menu = new Menu();
 
-            Guru.TambahGuru();
-            Guru.PesanGuru();
+            // bikin menu
+
+
+            //StateGuru Guru = new StateGuru();
+            //PengerjaanState status = new PengerjaanState();
+
+            //Guru.TambahGuru();
+            //Console.Write("test");
+
+            //Guru.TambahGuru();
+            //Guru.PesanGuru();
         }
     }
 }

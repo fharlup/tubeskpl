@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Utama.Class;
+using Utama.Enum;
 
 namespace API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("guru/[controller]")]
     [ApiController]
     public class GuruController : ControllerBase
     {
@@ -42,18 +43,45 @@ namespace API.Controllers
             }
         }
 
-        [HttpPost]
-        public IActionResult Post([FromBody] Guru guru)
+        [HttpPost("register")]
+        public IActionResult Register(Guru guru)
         {
+            foreach (Guru g in listGuru)
+            {
+                if (g.username == guru.username)
+                {
+                    return Conflict("Username sudah terdaftar");
+                }
+            }
+
             try
             {
                 listGuru.Add(guru);
-                return Ok();
+                return Ok("Registrasi berhasil");
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(Guru guru)
+        {
+            Guru existingGuru = null;
+            foreach (Guru g in listGuru)
+            {
+                if (g.username == guru.username && g.password == guru.password)
+                {
+                    existingGuru = g;
+                }
+            }
+            if (existingGuru == null)
+            {
+                return Unauthorized("Username atau password salah");
+            }
+
+            return Ok(new { message = "Login berhasil"});
         }
 
         [HttpPut("{id}")]
